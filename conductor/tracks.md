@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Implement Web OTA firmware updates**
+- [~] **Track: Implement Web OTA firmware updates**
   *Link: [./tracks/web_ota_20260620/](./tracks/web_ota_20260620/)*
