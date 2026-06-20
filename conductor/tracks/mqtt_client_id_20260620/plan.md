@@ -6,4 +6,4 @@
     - [x] Analyze `src/main.cpp` connection logic
     - [x] Modify `src/main.cpp` to use `deviceId` instead of `""` in the `mqttClient.connect()` call
     - [x] Run `make` to compile the firmware and verify build success
-- [ ] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
