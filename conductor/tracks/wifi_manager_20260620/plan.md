@@ -9,4 +9,4 @@
     - [x] Update `src/main.cpp` to include `<WiFiManager.h>`
     - [x] Replace `configureWifi()` with WiFiManager's connection loop, setting the AP name to `HA-Adapter-<deviceId>`
     - [x] Verify that compiling the project passes
-- [ ] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
