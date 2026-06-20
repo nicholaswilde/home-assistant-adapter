@@ -75,7 +75,7 @@ static void connectToMqtt()
 
       Serial.print("Attempting MQTT connection...");
 
-      if(mqttClient.connect("", mqttUser, mqttPassword)) {
+      if(mqttClient.connect(deviceId, mqttUser, mqttPassword)) {
         Serial.println("connected");
         digitalWrite(LED_MQTT, HIGH);
       }
