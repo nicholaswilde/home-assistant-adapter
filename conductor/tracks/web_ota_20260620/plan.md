@@ -2,7 +2,7 @@
 
 ## Phase 1: Integrate Web OTA Server
 
-- [x] Task: Configure Partition Table for OTA (Verified that default.csv has two 1.25MB OTA partitions, which is sufficient)
+- [x] Task: Configure Partition Table for OTA (Verified that default.csv has two 1.25MB OTA partitions, which is sufficient) [3d917d5]
     - [x] Inspect default partition table used in `platformio.ini`
     - [x] If necessary, configure/assert custom partition layout to support two OTA partitions
 - [ ] Task: Implement Web Update Server in main.cpp
