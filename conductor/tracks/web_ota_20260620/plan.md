@@ -2,9 +2,9 @@
 
 ## Phase 1: Integrate Web OTA Server
 
-- [ ] Task: Configure Partition Table for OTA
-    - [ ] Inspect default partition table used in `platformio.ini`
-    - [ ] If necessary, configure/assert custom partition layout to support two OTA partitions
+- [x] Task: Configure Partition Table for OTA (Verified that default.csv has two 1.25MB OTA partitions, which is sufficient)
+    - [x] Inspect default partition table used in `platformio.ini`
+    - [x] If necessary, configure/assert custom partition layout to support two OTA partitions
 - [ ] Task: Implement Web Update Server in main.cpp
     - [ ] Update `src/main.cpp` to include `<WebServer.h>` and `<Update.h>`
     - [ ] Create a `WebServer` instance running on port 80
