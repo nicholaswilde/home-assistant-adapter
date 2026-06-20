@@ -17,6 +17,7 @@
 - **MQTT client:** `knolleary/PubSubClient@^2.8` - A client library for MQTT messaging supporting MQTT 3.1.1.
 - **NTP client:** `arduino-libraries/NTPClient@^3.2.1` - Used to synchronize device time via NTP.
 - **Home Assistant integration:** `geappliances/home-assistant-bridge@^1.3.0` - Specialized library for communicating with Home Assistant.
+- **WiFi configuration portal:** `tzapu/WiFiManager@^2.0.17` - A library for dynamic WiFi configuration via captive portal.
 
 ## Security & Protocols
 

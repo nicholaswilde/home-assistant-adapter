@@ -13,9 +13,9 @@ The ESP32C3-based Home Assistant adapter firmware acts as a reliable, secure, an
 
 1. **Serial-to-MQTT Bridge:** Seamlessly forward data from the hardware serial port (RJ45 breakout) of the carrier board to MQTT topics and vice versa.
 2. **Home Assistant Integration:** Integrate with Home Assistant using the `home-assistant-bridge` library for automatic discovery or manual entity configuration.
-3. **Robust WiFi Connectivity:** Automated connection management, retry mechanisms, and fail-safe watchdog resets on network failure.
+3. **Dynamic WiFi Configuration & Captive Portal:** Automatically falls back to a temporary Access Point and captive portal (SSID: `HA-Adapter-<deviceId>`) to configure WiFi credentials dynamically via a web browser if connections fail. Standard automated connection management and watchdog resets remain active.
 4. **Status Indicators:** LED status feedback for WiFi connectivity, MQTT broker connection status, and heartbeat activity.
-5. **Configurable Settings:** Externalized credentials and certificates for custom WiFi/MQTT environments (supported via Certificate.h and Config.h).
+5. **Configurable Settings:** Externalized certificates and broker configurations for custom MQTT environments (supported via Certificate.h and Config.h), while WiFi credentials are dynamically configured.
 6. **TLS Support (Optional):** Secure connection to the MQTT broker using TLS with optional server certificate validation.
 
 ## Hardware Details
