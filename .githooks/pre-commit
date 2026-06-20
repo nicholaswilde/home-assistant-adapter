@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Git pre-commit hook to prevent committing files containing secrets.
+
+# List of forbidden files (filenames)
+FORBIDDEN_FILES=(
+  "Config.h"
+  "Certificate.h"
+)
+
+exit_code=0
+
+# Get list of staged files
+staged_files=$(git diff --cached --name-only)
+
+for file in $staged_files; do
+  filename=$(basename "$file")
+  
+  # Check if the file is explicitly forbidden
+  for forbidden in "${FORBIDDEN_FILES[@]}"; do
+    if [[ "$filename" == "$forbidden" ]]; then
+      echo -e "\e[31;1m[ERROR] Forbidden file detected in stage: $file\e[0m"
+      echo -e "\e[31mThis file containing sensitive credentials or certificates must NOT be committed to Git.\e[0m"
+      exit_code=1
+    fi
+  done
+  
+  # Scan file content if it exists and is not a sample file
+  if [[ -f "$file" ]] && [[ "$file" != *.sample ]]; then
+    # Detect if any newly added lines look like they contain actual hardcoded WiFi/MQTT credentials
+    # e.g., ssid or password assignment that is not the default sample value
+    if git diff --cached "$file" | grep -E "^\+\s*const char\*\s*(ssid|password|mqttPassword|mqttUser)\s*=" | grep -qvE '("Your SSID"|"Your password"|"homeassistant"|"Yahz2nihie2couJ8zootee1ae5aingi5caing6ucaicigha2Eeshiel7eew3Eith"|"some_device")'; then
+      echo -e "\e[31;1m[ERROR] Detected potential hardcoded secrets/credentials in: $file\e[0m"
+      echo -e "\e[31mPlease check the modified lines containing credentials:\e[0m"
+      git diff --cached "$file" | grep -E "^\+\s*const char\*\s*(ssid|password|mqttPassword|mqttUser)\s*="
+      exit_code=1
+    fi
+  fi
+done
+
+if [[ $exit_code -ne 0 ]]; then
+  echo -e "\e[31;1m[FATAL] Commit aborted to prevent credentials leak. Please remove the secrets or unstage the forbidden files.\e[0m"
+  exit 1
+fi

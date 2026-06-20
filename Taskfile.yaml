@@ -4,10 +4,27 @@ vars:
   PIO_ENV: xiao_c3
 
 tasks:
-  default:
-    desc: Run the build task
+  tools:
+    desc: Install uv tools
     cmds:
-      - task: build
+      - 'uv tool install platformio --with pip --force'
+      
+  init:
+    desc: Initialize the repo
+    cmds:
+      - '[ -f config/Config.h ] || cp config/Config.h.sample config/Config.h'
+      - '[ -f config/Certificate.h ] || cp config/Certificate.h.sample config/Certificate.h'
+      - 'git config core.hooksPath .githooks'
+
+
+  default:
+    cmds:
+      - task -l
+    silent: true
+  # default:
+  #   desc: Run the build task
+  #   cmds:
+  #     - task: build
 
   build:
     desc: Build the firmware

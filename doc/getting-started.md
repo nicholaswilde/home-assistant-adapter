@@ -17,7 +17,7 @@ In a new window, select Clone Git Repository and clone the following repo:
 
 In the explorer, select the config dropdown
 
-Go to [Config.h.sample](../config/Config.h.sample#L14) and change the WiFi credentials, Home Assistant user login information. And rename `Config.h.sample` to `Config.h` and `Certificate.h.sample` to `Certificate.h`.
+To set up the configuration files and configure Git hooks to prevent credentials from being committed, run `task init`. Then, update `config/Config.h` with your WiFi credentials, Home Assistant user login information, and MQTT configuration, and update `config/Certificate.h` with your certificate (if any).
 
 ![Slide4](./images/getting-started/slide4.png)
 Within Home Assistant, install the Mosquitto MQTT broker by going to settings>Add-ons>ADD-ON STORE and searching for Mosquitto. Install and start the add-on.

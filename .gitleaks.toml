@@ -1,0 +1,9 @@
+# Gitleaks configuration file
+# For more information, see https://github.com/gitleaks/gitleaks
+
+[allowlist]
+description = "Allowlist sample configuration files with dummy secrets"
+paths = [
+    '''config/Config\.h\.sample''',
+    '''config/Certificate\.h\.sample'''
+]

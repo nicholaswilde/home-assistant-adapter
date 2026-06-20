@@ -16,12 +16,16 @@ the Xiao to an RJ45 jack.
 ## :hammer_and_wrench: Setup
 
 1. Install [PlatformIO](https://platformio.org/) and [go-task](https://taskfile.dev).
-2. Copy `config/Certificate.h.sample` to `config/Certificate.h` and add your
-   certificate (if any).
-3. Copy `config/Config.h.sample` to `config/Config.h` and add your WiFi
-   credentials, MQTT configuration, and your device ID.
+2. Initialize the project:
+   ```bash
+   task init
+   ```
+   This will copy the sample configuration files to `config/Config.h` and `config/Certificate.h` (without overwriting existing custom configs) and configure Git hooks to prevent credentials from being committed.
+3. Edit `config/Config.h` with your WiFi credentials, MQTT configuration, and device ID.
+4. Edit `config/Certificate.h` to add your certificate (if any).
 
 In-depth instructions can be found in the [Getting Started](doc/getting-started.md) guide.
+
 
 ## :rocket: Usage
 
