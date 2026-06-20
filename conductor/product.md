@@ -17,6 +17,7 @@ The ESP32C3-based Home Assistant adapter firmware acts as a reliable, secure, an
 4. **Status Indicators:** LED status feedback for WiFi connectivity, MQTT broker connection status, and heartbeat activity.
 5. **Configurable Settings:** Externalized certificates and broker configurations for custom MQTT environments (supported via Certificate.h and Config.h), while WiFi credentials are dynamically configured.
 6. **TLS Support (Optional):** Secure connection to the MQTT broker using TLS with optional server certificate validation.
+7. **Web OTA Firmware Updates:** Host an HTTP update server on the ESP32-C3, allowing users to upload compiled firmware binary files (`.bin`) wirelessly over WiFi to update the device, with optional Basic Authentication password protection.
 
 ## Hardware Details
 
