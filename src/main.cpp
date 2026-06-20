@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <PubSubClient.h>
 #include <WiFi.h>
+#include <WiFiManager.h>
 #include "Config.h"
 #include "HomeAssistantBridge.h"
 
@@ -35,11 +36,31 @@ static void connectToWifi()
 
 static void configureWifi()
 {
-  Serial.println("WiFi SSID: " + String(ssid));
+  WiFiManager wm;
 
-  WiFi.begin(ssid, password);
+  // Prevent compiler warnings for unused configuration variables
+  Serial.print("Default SSID: ");
+  Serial.println(ssid);
+  (void)password;
 
-  connectToWifi();
+  // Set WiFi status LED low (indicating connecting)
+  digitalWrite(LED_WIFI, LOW);
+
+  // Set SSID for Access Point to HA-Adapter-<deviceId>
+  String apName = "HA-Adapter-" + String(deviceId);
+
+  Serial.println("Starting WiFiManager...");
+  
+  // Automatically connect using saved credentials,
+  // or start the captive portal Access Point if connection fails
+  if (!wm.autoConnect(apName.c_str())) {
+    Serial.println("Failed to connect and hit timeout. Restarting...");
+    delay(3000);
+    ESP.restart();
+  }
+
+  // Once connected, set WiFi status LED high
+  digitalWrite(LED_WIFI, HIGH);
 
 #ifdef MQTT_TLS
 #ifdef MQTT_TLS_VERIFY
