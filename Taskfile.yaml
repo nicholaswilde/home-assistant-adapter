@@ -41,6 +41,11 @@ tasks:
     cmds:
       - pio device monitor
 
+  read-mac:
+    desc: Read the MAC address of the ESP device
+    cmds:
+      - pio pkg exec -p tool-esptoolpy -- esptool.py --port /dev/ttyACM0 read_mac
+
   clean:
     desc: Clean build artifacts
     cmds:
