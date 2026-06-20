@@ -1,6 +1,6 @@
 # Plan: Use deviceId as the MQTT client identifier
 
-## Phase 1: Update MQTT Connection
+## Phase 1: Update MQTT Connection [checkpoint: d9ed792]
 
 - [x] Task: Update the MQTT client connection code to use deviceId [1810e63]
     - [x] Analyze `src/main.cpp` connection logic
