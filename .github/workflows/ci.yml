@@ -13,23 +13,33 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
           submodules: 'recursive'
 
-      - uses: actions/cache@v3
+      - name: Setup Task
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+
+      - name: Setup Python & uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: '3.11'
+
+      - name: PlatformIO Cache
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cache/pip
             ~/.platformio/.cache
-          key: ${{ runner.os }}-pio
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+          key: ${{ runner.os }}-pio-${{ hashFiles('**/platformio.ini') }}
+          restore-keys: |
+            ${{ runner.os }}-pio-
 
       - name: Install PlatformIO Core
-        run: pip install --upgrade platformio
+        run: uv pip install --system platformio
 
       - name: Build with PlatformIO
         run: ./script/ci

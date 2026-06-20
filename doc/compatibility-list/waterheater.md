@@ -1,4 +1,5 @@
 ## Water Heater Model Numbers
+
 - GH40S10BMR01
 - GH50S10BBR01
 - GF50S10FMR01

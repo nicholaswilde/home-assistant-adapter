@@ -1,0 +1,40 @@
+version: '3'
+
+vars:
+  PIO_ENV: xiao_c3
+
+tasks:
+  default:
+    desc: Run the build task
+    cmds:
+      - task: build
+
+  build:
+    desc: Build the firmware
+    cmds:
+      - pio run -e {{.PIO_ENV}}
+
+  upload:
+    desc: Upload/flash the firmware to the device
+    cmds:
+      - pio run -t upload -e {{.PIO_ENV}}
+
+  monitor:
+    desc: Open the serial monitor
+    cmds:
+      - pio device monitor
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - pio run -t clean -e {{.PIO_ENV}}
+
+  lint-yaml:
+    desc: Lint YAML files
+    cmds:
+      - yamllint-rs .
+
+  lint-markdown:
+    desc: Lint Markdown files
+    cmds:
+      - rumdl check .

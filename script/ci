@@ -1,7 +1,53 @@
 #!/usr/bin/env bash
+# Name: ci
+# Description: CI build setup script for home-assistant-adapter firmware
+# Author: Nicholas Wilde
+# Date: 2026-06-20
+# Version: 1.1.0
 
 set -e
+set -o pipefail
 
-mv config/Config.h.sample config/Config.h
-mv config/Certificate.h.sample config/Certificate.h
-make
+# Constants
+CONFIG_SAMPLE="config/Config.h.sample"
+CONFIG_TARGET="config/Config.h"
+CERT_SAMPLE="config/Certificate.h.sample"
+CERT_TARGET="config/Certificate.h"
+
+log() {
+  local level="$1"
+  local msg="$2"
+  local color=""
+  case "$level" in
+    "INFO") color="\e[38;2;166;227;161m" ;; # Green
+    "WARN") color="\e[38;2;249;226;175m" ;; # Yellow
+    "ERRO") color="\e[38;2;243;139;168m" ;; # Red
+    "DEBU") color="\e[38;2;137;180;250m" ;; # Blue
+  esac
+  echo -e "${color}[${level}] ${msg}\e[0m"
+}
+
+main() {
+  log "INFO" "Starting CI build process..."
+
+  if [[ ! -f "$CONFIG_SAMPLE" ]]; then
+    log "ERRO" "Config sample file $CONFIG_SAMPLE not found!"
+    exit 1
+  fi
+
+  if [[ ! -f "$CERT_SAMPLE" ]]; then
+    log "ERRO" "Certificate sample file $CERT_SAMPLE not found!"
+    exit 1
+  fi
+
+  log "INFO" "Preparing configuration files..."
+  cp "$CONFIG_SAMPLE" "$CONFIG_TARGET"
+  cp "$CERT_SAMPLE" "$CERT_TARGET"
+
+  log "INFO" "Compiling the firmware using go-task..."
+  task build
+
+  log "INFO" "CI build completed successfully."
+}
+
+main "$@"
