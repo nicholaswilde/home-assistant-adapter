@@ -1,6 +1,6 @@
 # Plan: Implement WiFi Manager for dynamic WiFi configuration
 
-## Phase 1: Dependency Setup and Porting Connection Logic
+## Phase 1: Dependency Setup and Porting Connection Logic [checkpoint: 5bc637b]
 
 - [x] Task: Add WiFiManager dependency [6053cb2]
     - [x] Add `tzapu/WiFiManager` dependency to `platformio.ini`
